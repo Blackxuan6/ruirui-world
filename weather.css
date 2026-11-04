@@ -1,0 +1,75 @@
+/* Weather stays inside the illustrated world; controls keep the paper palette. */
+#weather-controls { position:relative; z-index:2; margin:0 14px 18px; }
+.weather-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px 20px; }
+.weather-heading { display:flex; align-items:center; gap:9px; color:#5f7054; font-size:13px; }
+.weather-heading svg { width:22px; height:22px; }
+.weather-heading strong { font-weight:600; letter-spacing:1px; }
+.weather-heading span { font-size:11px; color:#747d67; }
+.weather-options { display:flex; gap:5px; padding:4px; border:1px solid #d6dcc6; border-radius:18px; background:#efefdf; }
+.weather-option { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-width:92px; min-height:44px; padding:9px 14px; border:1px solid transparent; border-radius:13px; background:transparent; color:#67745c; font:inherit; font-size:12px; cursor:pointer; transition:background .2s,color .2s,box-shadow .2s; }
+.weather-option svg { width:19px; height:19px; }
+.weather-option[aria-pressed="true"] { background:#fffdf1; border-color:#d7d8bc; color:#465e42; box-shadow:0 2px 4px #77805b15; }
+.weather-option:hover { background:#fffdf1b3; }
+.weather-option:focus-visible,.weather-replay:focus-visible { outline:2px solid #788e62; outline-offset:3px; }
+.weather-description { display:flex; align-items:center; flex-wrap:wrap; gap:2px 12px; min-height:32px; padding-top:7px; margin:0; font-size:12px; line-height:1.7; color:#68775b; }
+.weather-replay { min-height:36px; padding:4px 9px; border:1px dashed #a9b48e; border-radius:9px; background:#faf8e9; color:#576c48; font:inherit; font-size:12px; cursor:pointer; }
+.weather-replay[hidden] { display:none; }
+.weather-night-only,.weather-rain-only,.weather-paw-constellation { display:none; pointer-events:none; }
+.scene[data-weather="night"] .weather-night-only,.scene[data-weather="rainy"] .weather-rain-only { display:inline; }
+.scene[data-weather="night"].has-paw-constellation .weather-paw-constellation { display:inline; }
+.scene[data-weather="rainy"] { background:linear-gradient(110deg,#e5e4d6 0%,#e7eadf 39%,#cddbd5 70%,#dce5d8 100%); }
+.scene[data-weather="night"] { background:linear-gradient(110deg,#d2d0c4 0%,#d5d4c5 39%,#778895 67%,#566e7b 100%); border-color:#a6b5a7; }
+.scene[data-weather="rainy"] .scene-ground { background:linear-gradient(#aaba9f00,#a9bd99); }
+.scene[data-weather="night"] .scene-ground { background:linear-gradient(#82968100,#7e967c); }
+.scene:not([data-weather="sunny"]) .sun-halo,.scene:not([data-weather="sunny"]) .sunbeam,.scene:not([data-weather="sunny"]) .weather-sunlight { opacity:0; }
+.scene[data-weather="night"] .mote { background:#fbefb4; }
+.scene[data-weather="night"] .scene-label { color:#e7edce; }
+.scene[data-weather="night"] .label-dash { background:#e7edce; }
+.scene[data-weather="rainy"] .cloud-drift { fill:#c5d2ca; opacity:.85; }
+.scene[data-weather="night"] .cloud-drift { opacity:.12; }
+.scene:not([data-weather="sunny"]) .butterfly { visibility:hidden; }
+.scene[data-weather="rainy"] #garden-lawn stop:first-child { stop-color:#b8cba7; }
+.scene[data-weather="rainy"] #garden-lawn stop:last-child { stop-color:#9fb689; }
+.scene[data-weather="night"] #garden-lawn stop:first-child { stop-color:#9daf95; }
+.scene[data-weather="night"] #garden-lawn stop:nth-child(2) { stop-color:#8ca386; }
+.scene[data-weather="night"] #garden-lawn stop:last-child { stop-color:#7c9579; }
+.scene[data-weather="night"] #garden-distant stop:first-child { stop-color:#7f9894; }
+.scene[data-weather="night"] #garden-distant stop:last-child { stop-color:#9ab0a0; }
+.scene[data-weather="night"] #garden-sunpatch stop:first-child { stop-opacity:.1; }
+.scene[data-weather="rainy"] #garden-sunpatch stop:first-child { stop-opacity:.15; }
+.scene[data-weather="night"] .tree-canopy { opacity:.85; }
+.scene[data-weather="night"] #room-wall stop:first-child { stop-color:#e4dfce; }
+.scene[data-weather="night"] #room-wall stop:last-child { stop-color:#c8cbb8; }
+.scene[data-weather="night"] #room-deck stop:first-child { stop-color:#d0b58e; }
+.scene[data-weather="night"] #room-deck stop:last-child { stop-color:#b7a083; }
+.scene[data-weather="night"] .screen-glow { opacity:1; }
+.weather-raindrop { animation:weather-rain-fall 1.65s linear infinite; }
+.weather-ripple { transform-origin:0 0; animation:weather-water-ring 2.6s ease-out infinite; }
+.weather-stars { animation:weather-starlight 4.7s ease-in-out infinite alternate; }
+.window-rain-streaks { animation:weather-window-rain 3.8s ease-in-out infinite alternate; }
+.weather-firefly { position:absolute; z-index:3; display:grid; place-items:center; width:48px; height:48px; min-width:48px; min-height:48px; padding:0; transform:translate(-50%,-50%); border:0; border-radius:50%; background:radial-gradient(circle,#fff1a84d,transparent 70%); cursor:pointer; touch-action:manipulation; }
+.weather-firefly[hidden] { display:none; }
+.weather-firefly svg { width:29px; height:29px; overflow:visible; pointer-events:none; animation:weather-firefly-breathe 3.4s ease-in-out infinite alternate; }
+.weather-firefly:nth-of-type(2) svg { animation-delay:-1.3s; }
+.weather-firefly:nth-of-type(3) svg { animation-delay:-2.5s; }
+.weather-firefly:hover { background:radial-gradient(circle,#fff0a8a6,transparent 72%); }
+.weather-firefly:focus-visible { outline:2px dashed #ffedba; outline-offset:0; background:#fff5c02e; }
+.weather-firefly:disabled { cursor:default; }
+.weather-paw-constellation { animation:weather-constellation-in .65s ease-out both; }
+body[data-motion="off"] .weather-firefly svg { animation:none; }
+body.motion-paused .weather-firefly svg,body:not([data-phase="world"]) .weather-firefly svg { animation-play-state:paused; }
+@keyframes weather-rain-fall { from { transform:translate(4px,-18px); opacity:0; } 18% { opacity:.8; } 80% { opacity:.8; } to { transform:translate(-10px,30px); opacity:0; } }
+@keyframes weather-water-ring { from { transform:scale(.35); opacity:.9; } to { transform:scale(1.5); opacity:0; } }
+@keyframes weather-starlight { from { opacity:.5; } to { opacity:1; } }
+@keyframes weather-window-rain { from { opacity:.45; } to { opacity:.85; } }
+@keyframes weather-firefly-breathe { from { opacity:.7; transform:translateY(2px); } to { opacity:1; transform:translateY(-2px); } }
+@keyframes weather-constellation-in { from { opacity:0; } to { opacity:1; } }
+@media(max-width:700px) {
+  #weather-controls { margin:0 0 14px; }
+  .weather-toolbar { gap:10px; }
+  .weather-heading { width:100%; font-size:12px; }
+  .weather-options { width:100%; }
+  .weather-option { flex:1; min-width:0; padding:8px; }
+  .weather-description { font-size:11px; min-height:42px; }
+  .scene[data-weather="night"] { background:linear-gradient(#c8c9bc 0%,#d5d4c5 38%,#6b828d 57%,#6c857d 100%); }
+}

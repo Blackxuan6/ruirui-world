@@ -1,0 +1,97 @@
+/* Garden, keepsakes and the shared paper controls. Scene art stays in its own files. */
+.paper-button { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:44px; padding:11px 18px; border:1px solid #b9c4a1; border-radius:12px 14px 12px 13px; background:#fffdf3; color:#536446; font-size:13px; line-height:1.5; box-shadow:0 3px 0 #c9d0b450; transition:transform .2s,background .2s; }
+.paper-button:hover { background:#edf1df; transform:translateY(-2px); }
+.paper-button:active { transform:translateY(1px); }
+.paper-button:disabled { opacity:.6; transform:none; }
+.primary-paper { background:#718657; border-color:#62764d; color:#fffdf2; }
+.primary-paper:hover { background:#617649; }
+.courtyard-tools { display:flex; align-items:center; justify-content:space-between; gap:20px; margin:0 12px 18px; }
+#weather-controls { flex:1; min-width:0; }
+.camera-button { flex-shrink:0; transform:rotate(2deg); }
+.camera-button svg { width:25px; height:25px; fill:none; stroke:currentColor; stroke-width:1.4; stroke-linejoin:round; }
+.scene-play-target { position:absolute; z-index:4; min-width:44px; min-height:44px; padding:0; border:0; border-radius:50%; background:transparent; box-shadow:none; transform:translate(-50%,-50%); }
+.scene-play-target::after { position:absolute; top:calc(100% + 5px); left:50%; transform:translateX(-50%); padding:3px 7px; border-radius:7px; background:#fffdf1ed; color:#596b47; font-size:10px; white-space:nowrap; content:attr(data-label); }
+.scene-play-target:focus-visible { outline:2px dashed #788e62; outline-offset:3px; }
+.chime-target { left:92%; top:26%; }
+.water-target { left:72%; top:69%; }
+.keepsake-target { left:49.5%; top:39%; }
+.playground { margin:62px auto 46px; max-width:1280px; scroll-margin-top:24px; }
+.playground-heading { display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:28px; padding:0 14px; }
+.play-kicker { color:#7a8867; font:10px Georgia,serif; letter-spacing:2px; line-height:1.7; margin:0 0 9px; }
+.playground h2 { font-family:"STKaiti","KaiTi","Microsoft YaHei",serif; font-size:31px; font-weight:500; letter-spacing:1px; margin:0 0 11px; }
+.playground-heading p:last-child,.memory-heading p:last-child { font-size:13px; color:#687459; line-height:1.9; margin:0; }
+.playground-stamp { flex-shrink:0; border:1px dashed #adb998; border-radius:50%; width:76px; height:76px; display:grid; place-content:center; color:#81916a; font:17px/1.6 "KaiTi",serif; transform:rotate(9deg); text-align:center; }
+.workshop-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:stretch; }
+.play-workshop { min-width:0; position:relative; padding:29px; background:#fffdf3; border:1px solid #d0d6bd; border-radius:18px 21px 19px 16px; box-shadow:0 4px 0 #d5d9bf50; scroll-margin-top:24px; }
+.workshop-number { position:absolute; right:25px; top:25px; font:italic 35px Georgia,serif; color:#d3d9be; }
+.play-workshop h3 { margin:0 0 9px; font-size:22px; font-family:"KaiTi","Microsoft YaHei",serif; font-weight:500; letter-spacing:1px; }
+.workshop-caption { margin:0; color:#687459; font-size:13px; line-height:1.9; max-width:90%; }
+.garden-stage { position:relative; margin:21px -10px 10px; background:radial-gradient(ellipse at 50% 90%,#dce7c590,transparent 72%); border-bottom:1px solid #e1e4cf; }
+.garden-stage svg { display:block; width:100%; height:auto; overflow:visible; }
+.pot-choices { display:flex; justify-content:space-around; margin:-6px 0 18px; gap:6px; }
+.pot-choice { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; min-height:51px; flex:1; border-radius:10px; background:transparent; border:1px solid transparent; font-size:12px; color:#667654; }
+.pot-choice small { color:#7b836c; font-size:10px; }
+.pot-choice[aria-pressed="true"] { border-color:#aab98d; background:#edf2df; }
+.seed-choices { border:0; padding:0; margin:0 0 17px; }
+.seed-choices legend { font-size:12px; color:#6c775d; margin-bottom:10px; }
+.seed-options { display:flex; flex-wrap:wrap; gap:8px; }
+.seed-button { min-height:44px; border:1px solid #d8dcc8; background:#faf9ed; border-radius:22px; padding:8px 14px; font-size:12px; display:flex; align-items:center; gap:7px; }
+.seed-button[aria-pressed="true"] { border-color:#94a278; box-shadow:inset 0 0 0 1px #94a278; background:#f1f4e6; }
+.seed-dot { width:13px; height:13px; display:inline-block; border-radius:50% 50% 40% 60%; background:var(--seed-color); border:1px solid #88816b40; }
+.garden-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.garden-actions .paper-button svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linejoin:round; }
+.quiet-button { min-height:44px; background:none; color:#6f7a60; font-size:12px; padding:8px; text-decoration:underline; text-decoration-color:#aeb998; text-underline-offset:4px; }
+.workshop-status { font-size:12px; line-height:1.9; color:#657451; min-height:46px; margin:13px 0 0; }
+.local-note { font-size:11px; color:#727d63; line-height:1.9; margin:12px 0 0; }
+.visitor-flower-growth { transform-box:view-box; transform-origin:0 0; }
+.visitor-flower-growth.is-growing { animation:flower-greet .65s ease-out; }
+@keyframes flower-greet { 0%{transform:scale(.85) rotate(-4deg)} 60%{transform:scale(1.07) rotate(3deg)} 100%{transform:scale(1) rotate(0)} }
+.water-spark { pointer-events:none; position:absolute; inset:0; border-radius:inherit; opacity:0; background:radial-gradient(ellipse at 50% 75%,#f6e3a740,transparent 60%); }
+.is-watered .water-spark { animation:water-spark .65s ease-out; }
+@keyframes water-spark { 30% {opacity:1} }
+.memory-board { margin-top:34px; padding:30px; border:1px solid #d3ccb5; border-radius:19px; background:repeating-linear-gradient(95deg,#e7ddc420 0 1px,transparent 1px 6px),#f0ebda; }
+.memory-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.memory-heading h2 { font-size:27px; }
+.postcard-shelf { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; padding:28px 4px 16px; }
+.empty-postcard { grid-column:1/-1; display:flex; align-items:center; justify-content:center; gap:25px; min-height:140px; border:1px dashed #c2c6aa; border-radius:12px; color:#697657; font-size:13px; line-height:2; text-align:left; }
+.empty-postcard svg { width:75px; height:75px; fill:none; stroke:#94a07c; stroke-width:1.2; transform:rotate(-7deg); }
+.saved-postcard { position:relative; border:0; background:#fffdf5; padding:9px 9px 15px; box-shadow:0 5px 10px #6b6a4616; transform:rotate(-2deg); color:#5d694f; text-align:left; }
+.saved-postcard:nth-child(even) { transform:rotate(2deg); }
+.saved-postcard::before { content:""; position:absolute; left:39%; top:-9px; width:50px; height:20px; background:#d5ddbb99; transform:rotate(-5deg); }
+.saved-postcard img { width:100%; display:block; aspect-ratio:1536/1010; object-fit:contain; }
+.saved-postcard span { display:block; font-size:11px; margin:8px 3px 0; line-height:1.7; }
+.postcard-dialog { border:1px solid #c8ceb3; border-radius:23px; background:#f8f5e9; color:#414b37; padding:0; width:min(850px,calc(100% - 28px)); max-height:calc(100dvh - 32px); overflow:auto; box-shadow:0 28px 90px #2c3c3150; }
+.postcard-dialog::backdrop { background:#34433288; backdrop-filter:blur(5px); }
+.postcard-dialog-header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:22px 27px 16px; border-bottom:1px solid #dce0ca; }
+.postcard-dialog h2 { font:26px/1.5 "KaiTi","Microsoft YaHei",serif; margin:0; }
+.postcard-dialog .icon-button { font-size:28px; }
+.postcard-editor { padding:25px; }
+#postcard-preview { display:block; width:100%; aspect-ratio:1536/1010; background:#ecead9; box-shadow:0 8px 22px #4c57301f; object-fit:contain; }
+.postcard-fields { margin-top:23px; }
+.postcard-fields label { display:block; font-size:13px; margin-bottom:10px; }
+.postcard-fields input { width:100%; min-height:46px; border:1px solid #bdc8aa; border-radius:9px; padding:10px 13px; color:#536446; background:#fffdf5; font-size:14px; }
+.postcard-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; }
+#postcard-status { font-size:12px; line-height:1.8; color:#637350; min-height:22px; }
+@media(max-width:900px) { .workshop-grid { grid-template-columns:1fr; } .playground { max-width:660px; } .postcard-shelf { grid-template-columns:repeat(2,minmax(0,1fr)); } .courtyard-tools { align-items:flex-start; } }
+@media(max-width:600px) {
+  .courtyard-tools { margin:0 0 14px; gap:9px; flex-wrap:wrap; }
+  #weather-controls { flex-basis:100%; }
+  .camera-button { margin-left:auto; padding:8px 14px; font-size:12px; }
+  .playground { margin-top:36px; }
+  .playground-heading { padding:0; gap:12px; }
+  .playground h2 { font-size:25px; }
+  .playground-stamp { width:59px; height:59px; font-size:14px; }
+  .play-workshop { padding:24px 20px 20px; }
+  .workshop-number { right:20px; top:19px; }
+  .seed-button { padding:8px 10px; font-size:11px; }
+  .memory-board { padding:23px 17px; }
+  .memory-heading { align-items:flex-start; flex-direction:column; }
+  .postcard-shelf { gap:18px 12px; }
+  .empty-postcard { padding:18px; gap:15px; font-size:12px; }
+  .empty-postcard svg { width:55px; min-width:55px; }
+  .postcard-dialog-header { padding:17px; } .postcard-dialog h2 {font-size:22px}
+  .postcard-editor { padding:16px; }
+  .scene-play-target::after {font-size:9px;padding:2px 5px}
+  .keepsake-target::after { top:auto; bottom:calc(100% + 4px); }
+}
+body[data-motion="off"] .is-watered *, body[data-motion="off"] .is-growing, .motion-paused .playground * { animation:none!important; }
